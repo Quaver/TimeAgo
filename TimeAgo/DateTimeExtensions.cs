@@ -5,17 +5,12 @@ namespace TimeAgo
 {
     public static class DateTimeExtensions
     {
-        public static String TimeAgo(this DateTime dateTime)
-        {
-            return dateTime.TimeAgo(CultureInfo.CurrentUICulture);
-        }
+        public static string TimeAgo(this DateTime dateTime) => dateTime.TimeAgo(CultureInfo.CurrentUICulture);
 
-        public static String TimeAgo(this DateTime dateTime, CultureInfo cultureInfo)
-        {
-            return dateTime.TimeAgo(DateTime.Now, cultureInfo);
-        }
+        public static string TimeAgo(this DateTime dateTime, CultureInfo cultureInfo) =>
+            dateTime.TimeAgo(DateTime.Now, cultureInfo);
 
-        public static String TimeAgo(this DateTime dateTime, DateTime relativeTo, CultureInfo cultureInfo)
+        public static string TimeAgo(this DateTime dateTime, DateTime relativeTo, CultureInfo cultureInfo)
         {
             if (cultureInfo == null)
                 throw new ArgumentNullException("cultureInfo");
@@ -24,28 +19,37 @@ namespace TimeAgo
             var dateTimeFormatStrings = GetFormatString(cultureInfo);
             if (timeSpan.Days > 365)
             {
-                var years = (timeSpan.Days / 365);
+                var years = timeSpan.Days / 365;
                 if (timeSpan.Days % 365 != 0)
                     years += 1;
-                return String.Format(years == 1 ? dateTimeFormatStrings.YearAgo : dateTimeFormatStrings.YearsAgo, years);
+                return string.Format(years == 1 ? dateTimeFormatStrings.YearAgo : dateTimeFormatStrings.YearsAgo,
+                    years);
             }
+
             if (timeSpan.Days > 30)
             {
-                var months = (timeSpan.Days / 30);
+                var months = timeSpan.Days / 30;
                 if (timeSpan.Days % 31 != 0)
                     months += 1;
-                return String.Format(months == 1 ? dateTimeFormatStrings.MonthAgo : dateTimeFormatStrings.MonthsAgo, months);
+                return string.Format(months == 1 ? dateTimeFormatStrings.MonthAgo : dateTimeFormatStrings.MonthsAgo,
+                    months);
             }
+
             if (timeSpan.Days > 0)
-                return String.Format(timeSpan.Days == 1 ? dateTimeFormatStrings.DayAgo : dateTimeFormatStrings.DaysAgo, timeSpan.Days);
+                return string.Format(timeSpan.Days == 1 ? dateTimeFormatStrings.DayAgo : dateTimeFormatStrings.DaysAgo,
+                    timeSpan.Days);
             if (timeSpan.Hours > 0)
-                return String.Format(timeSpan.Hours == 1 ? dateTimeFormatStrings.HourAgo : dateTimeFormatStrings.HoursAgo, timeSpan.Hours);
+                return string.Format(
+                    timeSpan.Hours == 1 ? dateTimeFormatStrings.HourAgo : dateTimeFormatStrings.HoursAgo,
+                    timeSpan.Hours);
             if (timeSpan.Minutes > 0)
-                return String.Format(timeSpan.Minutes == 1 ? dateTimeFormatStrings.MinuteAgo : dateTimeFormatStrings.MinutesAgo, timeSpan.Minutes);
+                return string.Format(
+                    timeSpan.Minutes == 1 ? dateTimeFormatStrings.MinuteAgo : dateTimeFormatStrings.MinutesAgo,
+                    timeSpan.Minutes);
             if (timeSpan.Seconds > 1 || timeSpan.Seconds == 0)
-                return String.Format(dateTimeFormatStrings.SecondsAgo, timeSpan.Seconds);
+                return string.Format(dateTimeFormatStrings.SecondsAgo, timeSpan.Seconds);
             if (timeSpan.Seconds == 1)
-                return String.Format(dateTimeFormatStrings.SecondAgo, timeSpan.Seconds);
+                return string.Format(dateTimeFormatStrings.SecondAgo, timeSpan.Seconds);
             throw new NotSupportedException("The DateTime object does not have a supported value.");
         }
 

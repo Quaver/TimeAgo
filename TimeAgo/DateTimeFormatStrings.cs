@@ -1,20 +1,18 @@
-﻿using System;
-
-namespace TimeAgo
+﻿namespace TimeAgo
 {
     internal class DateTimeFormatStrings
     {
-        public String SecondAgo;
-        public String SecondsAgo;
-        public String MinuteAgo;
-        public String MinutesAgo;
-        public String HourAgo;
-        public String HoursAgo;
-        public String DayAgo;
-        public String DaysAgo;
-        public String MonthAgo;
-        public String MonthsAgo;
-        public String YearAgo;
-        public String YearsAgo;
+        public string DayAgo;
+        public string DaysAgo;
+        public string HourAgo;
+        public string HoursAgo;
+        public string MinuteAgo;
+        public string MinutesAgo;
+        public string MonthAgo;
+        public string MonthsAgo;
+        public string SecondAgo;
+        public string SecondsAgo;
+        public string YearAgo;
+        public string YearsAgo;
     }
 }
